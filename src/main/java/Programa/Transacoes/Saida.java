@@ -50,7 +50,7 @@ public class Saida extends MovimentoBase implements Serializable {
 
     @Override
     public String getMovimentoCompleto() {
-        return "Saida de: "+getTipo()+"; No valor de: "+getValor()+"; Descrita como: "+getDescricao()+"; Na data: "+getData()+"; De código: "+getCodigoDeMovimentacao()+" .";
+        return "Saida de: "+getTipo()+"; No valor de: "+getValor()+"; Descrita como: "+getDescricao()+"; ata: "+getData()+"; De código: "+getCodigoDeMovimentacao()+" .";
     }
 
     //equals e hashcode com codigo e tipo.

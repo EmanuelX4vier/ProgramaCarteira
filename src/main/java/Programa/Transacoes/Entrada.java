@@ -13,6 +13,7 @@ public class Entrada extends MovimentoBase implements Serializable {
     private Data data;
     private final int codigoDeMovimentacao;
 
+
     //Cria o movimento.
     public Entrada(TipoDeMovimentacao tipo, double valor, String descricao, Data data, int codigoDeMovimentacao) {
         super(valor, descricao);
@@ -50,7 +51,7 @@ public class Entrada extends MovimentoBase implements Serializable {
 
     @Override
     public String getMovimentoCompleto() {
-        return "Entrada de: "+getTipo()+"; No valor de: "+getValor()+"; Descrita como: "+getDescricao()+"; Na data: "+getData()+"; De código: "+getCodigoDeMovimentacao()+" .";
+        return "Entrada de: "+getTipo()+"; No valor de: "+getValor()+"; Descrita como: "+getDescricao()+"; Na data e hora: "+getData()+"; De código: "+getCodigoDeMovimentacao()+" .";
     }
 
     //equals e hashcode com codigo e tipo.

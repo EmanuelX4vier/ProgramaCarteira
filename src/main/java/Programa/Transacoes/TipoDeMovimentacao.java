@@ -1,6 +1,8 @@
 package Programa.Transacoes;
 
-public enum TipoDeMovimentacao {
+import java.io.Serializable;
+
+public enum TipoDeMovimentacao implements Serializable {
     Indefinido, Cartao, Boleto, Compra, Recebimento, Deposito, Venda ;
 
 

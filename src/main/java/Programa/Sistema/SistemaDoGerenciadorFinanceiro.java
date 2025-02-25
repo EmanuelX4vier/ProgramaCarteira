@@ -9,6 +9,7 @@ import Programa.Transacoes.Saida;
 import Programa.Transacoes.TipoDeMovimentacao;
 import java.io.IOException;
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.util.*;
 
 
@@ -20,7 +21,7 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
     //inicia o sistema
     public SistemaDoGerenciadorFinanceiro(){
         this.usuarioPrincipal = new Usuario();
-        this.gravador = new GravadorDeDados();
+        this.gravador = new GravadorDeDados();;
     }
 
     //Cria codigo aleatório para o usuário.
@@ -37,9 +38,9 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
     }
 
     //Registra saidas e entradas de valores.
-    public void registrarEntrada (int codigoDoUsuario, TipoDeMovimentacao tipo, double valor, String descricao, Data data) throws UsuarioNaoCadastradoException {
+    public void registrarEntrada (int codigoDoUsuario, TipoDeMovimentacao tipo, double valor, String descricao) throws UsuarioNaoCadastradoException {
         if(usuarioPrincipal.getCodigo() == codigoDoUsuario){
-            Entrada novaEntrada = new Entrada(tipo, valor, descricao, data, random.nextInt());
+            Entrada novaEntrada = new Entrada(tipo, valor, descricao, new Data(), random.nextInt());
             List<Entrada> novaLista = new ArrayList<>(usuarioPrincipal.getEntradas());
             novaLista.add(novaEntrada);
             usuarioPrincipal.setEntradas(novaLista);
@@ -48,9 +49,9 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
         }
     }
 
-    public void registrarSaida(int codigoDoUsuario, TipoDeMovimentacao tipo, double valor, String descricao, Data data) throws UsuarioNaoCadastradoException{
+    public void registrarSaida(int codigoDoUsuario, TipoDeMovimentacao tipo, double valor, String descricao) throws UsuarioNaoCadastradoException{
         if(usuarioPrincipal.getCodigo() == codigoDoUsuario){
-            Saida novaSaida = new Saida(tipo, valor, descricao, data, random.nextInt());
+            Saida novaSaida = new Saida(tipo, valor, descricao, new Data(), random.nextInt());
             List<Saida> novaLista = new ArrayList<>(usuarioPrincipal.getSaidas());
             novaLista.add(novaSaida);
             usuarioPrincipal.setSaidas(novaLista);
@@ -60,7 +61,7 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
     }
 
     //Operações com o saldo.
-    public double saldo (){
+    public double somaSaldo (){
         double saldo = usuarioPrincipal.getSaldoCorrente()+usuarioPrincipal.getValorDeTodasAsEntradas()-usuarioPrincipal.getValorDeTodasAsSaidas();
         usuarioPrincipal.setSaldoCorrente(saldo);
         return saldo;
@@ -72,13 +73,17 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
         return usuarioPrincipal.getNome();
     }
 
+    public double getSaldoDoUsuario(){
+    return usuarioPrincipal.getSaldoCorrente();
+    }
+
     public int getCodigoDoUsuario() throws UsuarioNaoCadastradoException {;
         return usuarioPrincipal.getCodigo();
     }
 
     //Informativo base do usuario.
     public String getInformativo(){
-        return "Saldo atual:\n"+saldo()+"\nTransações de entrada:\n"+getEntradasDoUsuario()+"\nTransações de saída:\n"+getSaidasDoUsuario();
+        return "Saldo atual:\n"+getSaldoDoUsuario()+"\nTransações de entrada:\n"+getEntradasDoUsuario()+"\nTransações de saída:\n"+getSaidasDoUsuario();
     }
 
         //Entradas e saídas.
@@ -111,9 +116,11 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
         List<Usuario> usuariosRecuperados = new ArrayList<>(gravador.recuperaDados());
         for(Usuario u: usuariosRecuperados){
             Usuario usuario = new Usuario(u.getNome(), u.getSaldoCorrente(), u.getCodigo());
+            List<Entrada> entradasRecuperadas = new ArrayList<>(u.getEntradas());
+            List<Saida> saidasRecuperadas = new ArrayList<>(u.getSaidas());
+            usuario.setEntradas(entradasRecuperadas);
+            usuario.setSaidas(saidasRecuperadas);
             this.usuarioPrincipal = usuario;
-            this.usuarioPrincipal.setEntradas(u.getEntradas());
-            this.usuarioPrincipal.setSaidas(u.getSaidas());
         }
     }
 
