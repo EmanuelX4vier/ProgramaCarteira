@@ -59,9 +59,18 @@ public class TesteEntreTrasacoes {
         assertTrue(usuarioTeste.getEntradas().size()==1);
         //OK
 
+        //O segundo teste de transação de entrada funciona?
+        Entrada entrada2 = new Entrada(TipoDeMovimentacao.Indefinido, 100, "Achei na rua", new Data(), random.nextInt());
+        listaDeEntradasParaUsuarioTeste.add(entrada2);
+        List<Entrada> listaDeEntradas2 = new ArrayList<>(usuarioTeste.getEntradas());
+        listaDeEntradas2.add(entrada2);
+        assertTrue(listaDeEntradas2.size() == 2);
+        usuarioTeste.setEntradas(listaDeEntradas2);
+        //OK
+
         //A metodo saldo está correta(Teste com entradas)?
         double saldo = usuarioTeste.getSaldoCorrente()+usuarioTeste.getValorDeTodasAsEntradas()-usuarioTeste.getValorDeTodasAsSaidas();
-        assertEquals(1200, saldo);
+        assertEquals(1300, saldo);
         //OK
 
         //O metodo de transação de saida funciona?
@@ -73,7 +82,7 @@ public class TesteEntreTrasacoes {
 
         //A operação saldo está correta(Teste com saídas)?
         double saldo2 = usuarioTeste.getSaldoCorrente()+usuarioTeste.getValorDeTodasAsEntradas()-usuarioTeste.getValorDeTodasAsSaidas();
-        assertEquals(900, saldo2);
+        assertEquals(1000, saldo2);
         //OK
 
         //Testes extras.

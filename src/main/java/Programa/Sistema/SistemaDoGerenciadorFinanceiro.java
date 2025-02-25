@@ -57,26 +57,21 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
         return saldo;
     }
 
-
     //get's e set's.
     public String getNomeDoUsuario(){
-        String nome = usuarios.getNome();
-        return nome;
+        return usuarios.getNome();
     }
 
-    public int getCodigoDoUsuario() throws UsuarioNaoCadastradoException {
-        int codigoEncontrado = usuarios.getCodigo();
-        return codigoEncontrado;
+    public int getCodigoDoUsuario() throws UsuarioNaoCadastradoException {;
+        return usuarios.getCodigo();
     }
 
     public List<Entrada> getEntradasDoUsuario(){
-        List<Entrada>listaDeEntradas = usuarios.getEntradas();
-        return listaDeEntradas;
+        return usuarios.getEntradas();
     }
 
     public List<Saida> getSaidasDoUsuario(){
-        List<Saida>listaDeSaidas = usuarios.getSaidas();
-        return listaDeSaidas;
+        return usuarios.getSaidas();
     }
 
 
