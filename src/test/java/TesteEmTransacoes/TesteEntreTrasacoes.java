@@ -1,12 +1,12 @@
 package TesteEmTransacoes;
 
+import Programa.Exceptions.TransacaoNaoExisteException;
 import Programa.Sistema.Data;
 import Programa.Sistema.Usuario;
 import Programa.Transacoes.Entrada;
 import Programa.Transacoes.Saida;
 import Programa.Transacoes.TipoDeMovimentacao;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TesteEntreTrasacoes {
 
     @Test
-    public void testaTransacoes(){
+    public void testaTransacoes() throws TransacaoNaoExisteException {
         Random random = new Random();
 
         //Criação da lista de entradas.
@@ -85,9 +85,16 @@ public class TesteEntreTrasacoes {
         assertEquals(1000, saldo2);
         //OK
 
+
+
         //Testes extras.
+        System.out.println(usuarioTeste.getCodigo());
+        System.out.println(entrada1.getMovimentoCompleto());
+        System.out.println(entrada2.getMovimentoCompleto());
+        System.out.println(saida1.getMovimentoCompleto());
         System.out.println(usuarioTeste.getEntradas());
         System.out.println(usuarioTeste.getSaidas());
+        System.out.println(usuarioTeste.getTransacaoPorCodigo(entrada1.getCodigoDeMovimentacao()));
         System.out.println(usuarioTeste.getSaldoCorrente());
         System.out.println(saldo);
         System.out.println(saldo2);

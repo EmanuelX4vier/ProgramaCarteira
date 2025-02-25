@@ -50,6 +50,6 @@ public abstract class MovimentoBase implements Serializable {
 
     @Override
     public String toString() {
-        return "Movimento no valor de: "+getValor()+"; Descrita como: "+getDescricao()+" .";
+        return "Movimento no valor de: "+getValor()+"; Descrita como: "+getDescricao();
     }
 }

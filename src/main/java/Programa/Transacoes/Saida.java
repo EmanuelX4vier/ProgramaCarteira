@@ -40,18 +40,17 @@ public class Saida extends MovimentoBase implements Serializable {
         return codigoDeMovimentacao;
     }
 
-
-    @Override
-    public String getMovimentoCompleto() {
-        return "Saida de: "+getTipo()+"; No valor de: "+getValor()+"; Descrita como: "+getDescricao()+"; Na data: "+getData()+"; De código: "+getCodigoDeMovimentacao()+" .";
-    }
-
     public Data getData() {
         return data;
     }
 
     public void setData(Data data) {
         this.data = data;
+    }
+
+    @Override
+    public String getMovimentoCompleto() {
+        return "Saida de: "+getTipo()+"; No valor de: "+getValor()+"; Descrita como: "+getDescricao()+"; Na data: "+getData()+"; De código: "+getCodigoDeMovimentacao()+" .";
     }
 
     //equals e hashcode com codigo e tipo.
@@ -67,6 +66,4 @@ public class Saida extends MovimentoBase implements Serializable {
     public int hashCode() {
         return Objects.hash(super.hashCode(), tipo, codigoDeMovimentacao);
     }
-
-
 }

@@ -1,8 +1,9 @@
 package Programa.Sistema;
 
+import Programa.Exceptions.TransacaoNaoExisteException;
 import Programa.Transacoes.Entrada;
+import Programa.Transacoes.MovimentoBase;
 import Programa.Transacoes.Saida;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ public class Usuario implements Serializable {
 
     private String nome;
     private double saldoCorrente;
-    private int codigo;
+    private final int codigo;
     private HashMap<Integer, Entrada> entradas;
     private HashMap<Integer, Saida> saidas;
 
@@ -37,6 +38,7 @@ public class Usuario implements Serializable {
     }
 
     //get's e set's.
+        //Nome, saldo e codigo.
     public String getNome() {
         return this.nome;
     }
@@ -45,22 +47,19 @@ public class Usuario implements Serializable {
         this.nome = nome;
     }
 
-    public int getCodigo() {
-        return this.codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
     public double getSaldoCorrente() {
         return this.saldoCorrente;
     }
 
-    public void setSaldoCorrente(double saldoCorrente) {
-        this.saldoCorrente = saldoCorrente;
+    public void setSaldoCorrente(double novoSaldoCorrente) {
+        this.saldoCorrente = novoSaldoCorrente;
     }
 
+    public int getCodigo() {
+        return this.codigo;
+    }
+
+        //Entradas e saidas
     public List<Entrada> getEntradas() {
         List<Entrada> listaDeEntradas = new ArrayList<>(this.entradas.values());
         return listaDeEntradas;
@@ -105,9 +104,16 @@ public class Usuario implements Serializable {
         return todasAsSaidas;
     }
 
-    //equals, hashCode e toString.
+        //PesquisaDeTransacao.
+    public MovimentoBase getTransacaoPorCodigo(int codigoDaTransacao) throws TransacaoNaoExisteException {
+        if(this.entradas.containsKey(codigoDaTransacao)){
+            return this.entradas.get(codigoDaTransacao);
+        }else{
+            throw new TransacaoNaoExisteException("Esta transação não existe");
+        }
+    }
 
-
+    //Equals, hashCode e toString.
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -118,5 +124,14 @@ public class Usuario implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(nome, saldoCorrente, codigo);
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nome='" + nome + '\'' +
+                ", saldoCorrente=" + saldoCorrente +
+                ", codigo=" + codigo +
+                '}';
     }
 }
