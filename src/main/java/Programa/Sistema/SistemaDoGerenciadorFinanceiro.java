@@ -37,9 +37,9 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
     }
 
     //Registra saidas e entradas de valores.
-    public void registrarEntrada (int codigoDoUsuario, TipoDeMovimentacao tipo, double valor, String descricao, Data data) throws UsuarioNaoCadastradoException {
+    public void registrarEntrada (int codigoDoUsuario, TipoDeMovimentacao tipo, double valor, String descricao) throws UsuarioNaoCadastradoException {
         if(usuarioPrincipal.getCodigo() == codigoDoUsuario){
-            Entrada novaEntrada = new Entrada(tipo, valor, descricao, data, random.nextInt());
+            Entrada novaEntrada = new Entrada(tipo, valor, descricao, new Data(), random.nextInt());
             List<Entrada> novaLista = new ArrayList<>(usuarioPrincipal.getEntradas());
             novaLista.add(novaEntrada);
             usuarioPrincipal.setEntradas(novaLista);
@@ -48,9 +48,9 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
         }
     }
 
-    public void registrarSaida(int codigoDoUsuario, TipoDeMovimentacao tipo, double valor, String descricao, Data data) throws UsuarioNaoCadastradoException{
+    public void registrarSaida(int codigoDoUsuario, TipoDeMovimentacao tipo, double valor, String descricao) throws UsuarioNaoCadastradoException{
         if(usuarioPrincipal.getCodigo() == codigoDoUsuario){
-            Saida novaSaida = new Saida(tipo, valor, descricao, data, random.nextInt());
+            Saida novaSaida = new Saida(tipo, valor, descricao, new Data(), random.nextInt());
             List<Saida> novaLista = new ArrayList<>(usuarioPrincipal.getSaidas());
             novaLista.add(novaSaida);
             usuarioPrincipal.setSaidas(novaLista);

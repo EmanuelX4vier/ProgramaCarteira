@@ -104,6 +104,8 @@ public class Usuario implements Serializable {
         return todasAsSaidas;
     }
 
+
+
         //PesquisaDeTransacao.
     public MovimentoBase getTransacaoPorCodigo(int codigoDaTransacao) throws TransacaoNaoExisteException {
         if(this.entradas.containsKey(codigoDaTransacao)){

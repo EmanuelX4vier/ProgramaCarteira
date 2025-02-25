@@ -3,6 +3,8 @@ package Programa.Transacoes;
 import Programa.Sistema.Data;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Entrada extends MovimentoBase implements Serializable {
@@ -12,6 +14,7 @@ public class Entrada extends MovimentoBase implements Serializable {
     private String descricao;
     private Data data;
     private final int codigoDeMovimentacao;
+
 
     //Cria o movimento.
     public Entrada(TipoDeMovimentacao tipo, double valor, String descricao, Data data, int codigoDeMovimentacao) {
