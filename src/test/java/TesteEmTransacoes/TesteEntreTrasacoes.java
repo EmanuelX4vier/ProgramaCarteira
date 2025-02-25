@@ -53,7 +53,7 @@ public class TesteEntreTrasacoes {
         //OK
 
         //O teste de transação de entrada funciona?
-        Entrada entrada1 = new Entrada(TipoDeMovimentacao.RecebimentoQualquer, 200, "Agiotagem", new Data(), random.nextInt());
+        Entrada entrada1 = new Entrada(TipoDeMovimentacao.Recebimento, 200, "Agiotagem", new Data(), random.nextInt());
         listaDeEntradasParaUsuarioTeste.add(entrada1);
         usuarioTeste.setEntradas(listaDeEntradasParaUsuarioTeste);
         assertTrue(usuarioTeste.getEntradas().size()==1);

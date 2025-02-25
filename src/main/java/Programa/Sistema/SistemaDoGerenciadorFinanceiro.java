@@ -75,6 +75,12 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
     public int getCodigoDoUsuario() throws UsuarioNaoCadastradoException {;
         return usuarioPrincipal.getCodigo();
     }
+
+    //Informativo base do usuario.
+    public String getInformativo(){
+        return "Saldo atual:\n"+saldo()+"\nTransações de entrada:\n"+getEntradasDoUsuario()+"\nTransações de saída:\n"+getSaidasDoUsuario();
+    }
+
         //Entradas e saídas.
     public List<Entrada> getEntradasDoUsuario(){
         return usuarioPrincipal.getEntradas();

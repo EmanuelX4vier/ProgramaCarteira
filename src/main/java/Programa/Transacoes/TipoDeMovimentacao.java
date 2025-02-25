@@ -1,7 +1,7 @@
 package Programa.Transacoes;
 
 public enum TipoDeMovimentacao {
-    Fatura, Luz, Agua, Internet, Academia, Salario, RecebimentoQualquer, Compra, Venda, Passagem, Comida, PagamentoQualquer, Indefinido;
+    Indefinido, Cartao, Boleto, Compra, Recebimento, Deposito, Venda ;
 
 
     public TipoDeMovimentacao tipoDoMovimento(){

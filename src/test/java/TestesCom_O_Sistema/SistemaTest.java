@@ -13,7 +13,6 @@ public class SistemaTest {
     @Test
     public void testeDeSistema() throws UsuarioJaCadastradoException, UsuarioNaoCadastradoException {
         SistemaDoGerenciadorFinanceiro sistema = new SistemaDoGerenciadorFinanceiro();
-        sout
     }
 
 }

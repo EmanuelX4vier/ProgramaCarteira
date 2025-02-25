@@ -2,8 +2,10 @@ package Programa;
 
 import Programa.Exceptions.UsuarioJaCadastradoException;
 import Programa.Exceptions.UsuarioNaoCadastradoException;
+import Programa.Sistema.Data;
 import Programa.Sistema.SistemaDoGerenciadorFinanceiro;
 import Programa.Sistema.Usuario;
+import Programa.Transacoes.TipoDeMovimentacao;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -14,7 +16,7 @@ public class ProgramaCarteira {
         //Inicialização e recuperação do usuario padrão.
         SistemaDoGerenciadorFinanceiro sistema = new SistemaDoGerenciadorFinanceiro();
         Random random = new Random();
-        try{
+        try {
             sistema.recuperarDados();
             JOptionPane.showMessageDialog(null, "Sistema recuperado com sucesso!");
         } catch (IOException e) {
@@ -22,21 +24,46 @@ public class ProgramaCarteira {
             e.getStackTrace();
         }
         //Verifica se já existe alguém cadastrado.
-        if(sistema.getNomeDoUsuario().equalsIgnoreCase("")){
+        if (sistema.getNomeDoUsuario().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Olá usuário! Vamos nos cadastrar agora.");
-            try{
+            try {
                 String nome = JOptionPane.showInputDialog(null, "Me diga seu nome:");
                 double saldoCorrenteInicial = Double.parseDouble(JOptionPane.showInputDialog(null, "Agora me diga o seu saldo corrente principal:"));
                 Usuario usuarioPrincipal = new Usuario(nome, saldoCorrenteInicial, random.nextInt());
                 sistema.substitui_O_Usuario(usuarioPrincipal);
-                JOptionPane.showMessageDialog(null, "Você foi cadastrado com sucesso! Aqui está seu código: "+sistema.getCodigoDoUsuario());
+                JOptionPane.showMessageDialog(null, "Você foi cadastrado com sucesso! Aqui está seu código: " + sistema.getCodigoDoUsuario());
                 sistema.salvarDados();
             } catch (UsuarioNaoCadastradoException | NumberFormatException e) {
                 e.getMessage();
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Seja bem vindo de volta "+sistema.getNomeDoUsuario()+" !");
+        } else {
+            JOptionPane.showMessageDialog(null, "Seja bem vindo de volta " + sistema.getNomeDoUsuario() + "! Segue suas atuais informações: \n" + sistema.getInformativo() + "\nVamos começar!");
         }
-
+        /*//Inicia menu:
+        boolean menu = true;
+        while (menu){
+            int opcao = Integer.parseInt(JOptionPane.showInputDialog(null, "O que deseja fazer?\n" +
+                    "1. Registrar nova entrada.\n" +
+                    "2. Registrar nova saida\n" +
+                    "3.Ver saldo\n" +
+                    "4. Ver suas transações\n" +
+                    "5. Sair"));
+            switch (opcao){
+                case 1:
+                    int tipoCase1 = Integer.parseInt(JOptionPane.showInputDialog(null, "Ok, vamos registrar uma nova entrada em sua conta. Primeiro me diga qual o tipo da transação que será feita:\n" +
+                            "1. Recebimento\n" +
+                            "2. Deposito.\n" +
+                            "3. Venda."));
+                    int valorCase1 = Integer.parseInt(JOptionPane.showInputDialog(null, "Agora o valor:"));
+                    Data dataCase1 = new Data(System.currentTimeMillis());
+                    switch (tipoCase1){
+                        case 1:
+                            try{
+                                sistema.registrarEntrada(sistema.getCodigoDoUsuario(), TipoDeMovimentacao.Recebimento, valorCase1, );
+                            }
+                    }
+            }
+        }
+        */
     }
 }
