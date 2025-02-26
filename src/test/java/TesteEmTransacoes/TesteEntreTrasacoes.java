@@ -2,14 +2,11 @@ package TesteEmTransacoes;
 
 import Programa.Exceptions.TransacaoNaoExisteException;
 import Programa.Sistema.Data;
-import Programa.Sistema.GravadorDeDados;
 import Programa.Sistema.Usuario;
 import Programa.Transacoes.Entrada;
 import Programa.Transacoes.Saida;
 import Programa.Transacoes.TipoDeMovimentacao;
 import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -19,14 +16,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TesteEntreTrasacoes {
 
     @Test
-    public void testaTransacoes() throws TransacaoNaoExisteException, IOException {
+    public void testaTransacoes() throws TransacaoNaoExisteException {
         Random random = new Random();
-        GravadorDeDados gravador = new GravadorDeDados();
-        /*try{
-            gravador.recuperaDados();
-        } catch (IOException e) {
-            e.getStackTrace();
-        }*/
 
         //Criação da lista de entradas.
         List<Entrada> listaDeEntradasParaUsuarioTeste = new ArrayList<>();
@@ -107,11 +98,6 @@ public class TesteEntreTrasacoes {
         System.out.println(usuarioTeste.getSaldoCorrente());
         System.out.println(saldo);
         System.out.println(saldo2);
-        /*try{
-            gravador.gravaDados(usuarioTeste);
-        } catch (IOException e) {
-            e.getStackTrace();
-        }*/
     }
 
 }

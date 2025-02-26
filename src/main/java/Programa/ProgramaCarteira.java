@@ -2,6 +2,7 @@ package Programa;
 
 import Programa.Exceptions.UsuarioJaCadastradoException;
 import Programa.Exceptions.UsuarioNaoCadastradoException;
+import Programa.Sistema.Data;
 import Programa.Sistema.SistemaDoGerenciadorFinanceiro;
 import Programa.Sistema.Usuario;
 import Programa.Transacoes.TipoDeMovimentacao;
@@ -23,7 +24,7 @@ public class ProgramaCarteira {
             e.getStackTrace();
         }
         //Verifica se já existe alguém cadastrado.
-        if (sistema.getNomeDoUsuario().equalsIgnoreCase("") || sistema.getNomeDoUsuario().equalsIgnoreCase("Sem nome")) {
+        if (sistema.getNomeDoUsuario().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "Olá usuário! Vamos nos cadastrar agora.");
             try {
                 String nome = JOptionPane.showInputDialog(null, "Me diga seu nome:");
@@ -38,7 +39,7 @@ public class ProgramaCarteira {
         } else {
             JOptionPane.showMessageDialog(null, "Seja bem vindo de volta " + sistema.getNomeDoUsuario() + "! Segue suas atuais informações: \n" + sistema.getInformativo() + "\nVamos começar!");
         }
-        //Inicia menu:
+        /*//Inicia menu:
         boolean menu = true;
         while (menu){
             int opcao = Integer.parseInt(JOptionPane.showInputDialog(null, "O que deseja fazer?\n" +
@@ -52,61 +53,17 @@ public class ProgramaCarteira {
                     int tipoCase1 = Integer.parseInt(JOptionPane.showInputDialog(null, "Ok, vamos registrar uma nova entrada em sua conta. Primeiro me diga qual o tipo da transação que será feita:\n" +
                             "1. Recebimento\n" +
                             "2. Deposito.\n" +
-                            "3. Venda.\n" +
-                            "4. Sair."));
+                            "3. Venda."));
                     int valorCase1 = Integer.parseInt(JOptionPane.showInputDialog(null, "Agora o valor:"));
-                    String descricaoCase1 = JOptionPane.showInputDialog(null, "E por fim a descrição:");
+                    Data dataCase1 = new Data(System.currentTimeMillis());
                     switch (tipoCase1){
                         case 1:
                             try{
-                                sistema.registrarEntrada(sistema.getCodigoDoUsuario(), TipoDeMovimentacao.Recebimento, valorCase1, descricaoCase1);
-                                JOptionPane.showMessageDialog(null, "Registrado com sucesso!");
-                                break;
-                            } catch (Exception e) {
-                                e.getStackTrace();
-                                break;
+                                sistema.registrarEntrada(sistema.getCodigoDoUsuario(), TipoDeMovimentacao.Recebimento, valorCase1, );
                             }
-                        case 2:
-                            try{
-                                sistema.registrarEntrada(sistema.getCodigoDoUsuario(), TipoDeMovimentacao.Deposito, valorCase1, descricaoCase1);
-                                JOptionPane.showMessageDialog(null, "Registrado com sucesso!");
-                                break;
-                            } catch (Exception e) {
-                                e.getStackTrace();
-                                break;
-                            }
-                        case 3:
-                            try{
-                                sistema.registrarEntrada(sistema.getCodigoDoUsuario(), TipoDeMovimentacao.Venda, valorCase1, descricaoCase1);
-                                JOptionPane.showMessageDialog(null, "Registrado com sucesso!");
-                                break;
-                            } catch (Exception e) {
-                                e.getStackTrace();
-                                break;
-                            }
-                        case 4:
-                            break;
-                        default:
-                            JOptionPane.showMessageDialog(null, "Erro");
-                            break;
                     }
-                break;
-                //Case 2
-                default:
-                    JOptionPane.showMessageDialog(null, "Erro");
-                    break;
             }
-            menu = false;
         }
-        JOptionPane.showMessageDialog(null, sistema.getEntradasDoUsuario());
-        JOptionPane.showMessageDialog(null, sistema.getSaldoDoUsuario());
-        try{
-            sistema.salvarDados();
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Erro");
-            e.getStackTrace();
-
-        }
+        */
     }
-
 }
