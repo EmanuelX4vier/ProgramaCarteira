@@ -3,7 +3,6 @@ package Programa.Sistema;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Calendar;
-import java.util.Objects;
 
 public class Data implements Serializable {
 

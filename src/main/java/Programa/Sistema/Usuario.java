@@ -1,8 +1,6 @@
 package Programa.Sistema;
 
-import Programa.Exceptions.TransacaoNaoExisteException;
 import Programa.Transacoes.Entrada;
-import Programa.Transacoes.MovimentoBase;
 import Programa.Transacoes.Saida;
 import java.io.Serializable;
 import java.util.ArrayList;

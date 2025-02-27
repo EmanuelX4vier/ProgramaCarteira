@@ -2,10 +2,8 @@ package Programa;
 
 import Programa.Exceptions.UsuarioJaCadastradoException;
 import Programa.Exceptions.UsuarioNaoCadastradoException;
-import Programa.Sistema.Data;
 import Programa.Sistema.SistemaDoGerenciadorFinanceiro;
 import Programa.Sistema.Usuario;
-import Programa.Transacoes.TipoDeMovimentacao;
 
 import javax.swing.*;
 import java.io.IOException;
