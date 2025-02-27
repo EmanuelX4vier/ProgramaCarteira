@@ -88,33 +88,6 @@ public class Usuario implements Serializable {
         }
     }
 
-    public double getValorDeTodasAsEntradas(){
-        double todasAsEntradas = 0;
-        for(Entrada e: this.entradas.values()){
-           todasAsEntradas += e.getValor();
-        }
-        return todasAsEntradas;
-    }
-
-    public double getValorDeTodasAsSaidas(){
-        double todasAsSaidas = 0;
-        for(Saida e: this.saidas.values()){
-            todasAsSaidas += e.getValor();
-        }
-        return todasAsSaidas;
-    }
-
-
-
-        //PesquisaDeTransacao.
-    public MovimentoBase getTransacaoPorCodigo(int codigoDaTransacao) throws TransacaoNaoExisteException {
-        if(this.entradas.containsKey(codigoDaTransacao)){
-            return this.entradas.get(codigoDaTransacao);
-        }else{
-            throw new TransacaoNaoExisteException("Esta transação não existe");
-        }
-    }
-
     //Equals, hashCode e toString.
     @Override
     public boolean equals(Object o) {

@@ -9,7 +9,6 @@ import Programa.Transacoes.Saida;
 import Programa.Transacoes.TipoDeMovimentacao;
 import java.io.IOException;
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.util.*;
 
 
@@ -60,21 +59,12 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
         }
     }
 
-    //Operações com o saldo.
-    public double somaSaldo (){
-        double saldo = usuarioPrincipal.getSaldoCorrente()+usuarioPrincipal.getValorDeTodasAsEntradas()-usuarioPrincipal.getValorDeTodasAsSaidas();
-        usuarioPrincipal.setSaldoCorrente(saldo);
-        return saldo;
-    }
+
 
     //get's e set's.
         //Nome e codigo.
     public String getNomeDoUsuario(){
         return usuarioPrincipal.getNome();
-    }
-
-    public double getSaldoDoUsuario(){
-    return usuarioPrincipal.getSaldoCorrente();
     }
 
     public int getCodigoDoUsuario() throws UsuarioNaoCadastradoException {;
@@ -83,7 +73,7 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
 
     //Informativo base do usuario.
     public String getInformativo(){
-        return "Saldo atual:\n"+getSaldoDoUsuario()+"\nTransações de entrada:\n"+getEntradasDoUsuario()+"\nTransações de saída:\n"+getSaidasDoUsuario();
+        return "Saldo atual:\n"+getSaldoAtual()+"\nTransações de entrada:\n"+getEntradasDoUsuario()+"\nTransações de saída:\n"+getSaidasDoUsuario();
     }
 
         //Entradas e saídas.
@@ -96,15 +86,46 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
     }
 
     public double getValorDeTodasAsEntradas(){
-        return usuarioPrincipal.getValorDeTodasAsEntradas();
+        double valorDetodasAsEntradas = 0;
+        for(Entrada e :this.usuarioPrincipal.getEntradas()){
+            valorDetodasAsEntradas+=e.getValor();
+        }
+        return  valorDetodasAsEntradas;
     }
 
     public double getValorDeTodasAsSaidas(){
-        return usuarioPrincipal.getValorDeTodasAsSaidas();
+        double valordeTodasAsSaidas = 0;
+        for(Saida s: this.usuarioPrincipal.getSaidas()){
+            valordeTodasAsSaidas+=s.getValor();
+        }
+        return valordeTodasAsSaidas;
     }
 
-    public MovimentoBase getTransacaoPorCodigo(int codigo) throws TransacaoNaoExisteException {
-        return usuarioPrincipal.getTransacaoPorCodigo(codigo);
+    //Operações com o saldo.
+    public double getSaldoAtual(){
+        return this.usuarioPrincipal.getSaldoCorrente();
+    }
+    public double somaSaldo (){
+        double saldo = usuarioPrincipal.getSaldoCorrente()+getValorDeTodasAsEntradas()-getValorDeTodasAsSaidas();
+        usuarioPrincipal.setSaldoCorrente(saldo);
+        return saldo;
+    }
+
+    //Pesquisa de transações.
+    public MovimentoBase getTransacao (int codigo) throws TransacaoNaoExisteException{
+        MovimentoBase transacaoEncontrada= null;
+        for(Entrada e: this.usuarioPrincipal.getEntradas()){
+            if(e.getCodigoDeMovimentacao() ==  codigo){
+                transacaoEncontrada=e;
+            }
+        }
+
+        for(Saida s: this.usuarioPrincipal.getSaidas()){
+            if(s.getCodigoDeMovimentacao() == codigo){
+                transacaoEncontrada=s;
+            }
+        }
+        return transacaoEncontrada;
     }
 
     //Gravação, recuperação e exlcusão de dados;

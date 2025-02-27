@@ -24,7 +24,7 @@ public class ProgramaCarteira {
             e.getStackTrace();
         }
         //Verifica se já existe alguém cadastrado.
-        if (sistema.getNomeDoUsuario().equalsIgnoreCase("")) {
+        if (sistema.getNomeDoUsuario().equalsIgnoreCase("") || sistema.getNomeDoUsuario().equalsIgnoreCase("Sem nome")) {
             JOptionPane.showMessageDialog(null, "Olá usuário! Vamos nos cadastrar agora.");
             try {
                 String nome = JOptionPane.showInputDialog(null, "Me diga seu nome:");
