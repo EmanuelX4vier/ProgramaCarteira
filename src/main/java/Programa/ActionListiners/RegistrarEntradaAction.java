@@ -13,6 +13,6 @@ public class RegistrarEntradaAction implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
 
-        sistema.registrarEntrada(sistema.getCodigoDoUsuario(), );
+        /*sistema.registrarEntrada(sistema.getCodigoDoUsuario());*/
     }
 }
