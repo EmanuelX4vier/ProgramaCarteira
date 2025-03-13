@@ -1,72 +1,86 @@
 package Programa.Transacoes;
 
 import Programa.Sistema.Data;
-
 import java.io.Serializable;
 import java.util.Objects;
 
 public class Entrada extends MovimentoBase implements Serializable {
 
-    private TipoDeMovimentacao tipo;
-    private double valor;
+    private final int codigoDeMovimentacao;
     private String descricao;
     private Data data;
-    private final int codigoDeMovimentacao;
-
+    private double valor;
 
     //Cria o movimento.
-    public Entrada(TipoDeMovimentacao tipo, double valor, String descricao, Data data, int codigoDeMovimentacao) {
-        super(valor, descricao);
-        this.tipo = tipo;
-        this.data = data;
+    public Entrada(int codigoDeMovimentacao, String descricao, Data data, double valor) {
+        super(descricao, valor);
         this.codigoDeMovimentacao = codigoDeMovimentacao;
+        this.data = data;
     }
-    public Entrada(){
-        super(0, "Sem descrição");
-        this.tipo = TipoDeMovimentacao.Indefinido;
-        this.data = new Data();
+
+    public Entrada() {
+        super("Sem descrição", 0);
         this.codigoDeMovimentacao = 0;
+        this.data = new Data();
     }
 
-    //get's e set's.
-    public TipoDeMovimentacao getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(TipoDeMovimentacao tipo) {
-        this.tipo = tipo;
-    }
-
+    //Get's.
     public int getCodigoDeMovimentacao() {
         return codigoDeMovimentacao;
+    }
+
+    @Override
+    public String getDescricao() {
+        return descricao;
     }
 
     public Data getData() {
         return data;
     }
 
+    @Override
+    public double getValor() {
+        return valor;
+    }
+
+    //Set's.
+    @Override
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    @Override
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
     public void setData(Data data) {
         this.data = data;
     }
 
-    @Override
-    public String getMovimentoCompleto() {
-        return "Entrada de: "+getTipo()+"; No valor de: "+getValor()+"; Descrita como: "+getDescricao()+"; Na data e hora: "+getData()+"; De código: "+getCodigoDeMovimentacao()+" .";
-    }
-
-    //equals e hashcode com codigo e tipo.
+    //Equals e HashCode.
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Entrada entrada = (Entrada) o;
-        return codigoDeMovimentacao == entrada.codigoDeMovimentacao && tipo == entrada.tipo;
+        return codigoDeMovimentacao == entrada.codigoDeMovimentacao;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), tipo, codigoDeMovimentacao);
+        return Objects.hash(super.hashCode(), codigoDeMovimentacao);
     }
 
+    //toString.
 
+    @Override
+    public String toString() {
+        return "Entrada{" +
+                "codigoDeMovimentacao=" + codigoDeMovimentacao +
+                ", descricao='" + descricao + '\'' +
+                ", data=" + data +
+                ", valor=" + valor +
+                '}';
+    }
 }

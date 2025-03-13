@@ -1,6 +1,6 @@
 package Programa;
 
-import Programa.Sistema.SistemaDoGerenciadorFinanceiroParteDoUsuario;
+import Programa.Sistema.SistemaDoGerenciadorFinanceiro;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ public class ProgramaCarteiraGUI extends JFrame {
     JPanel painelInformativo, painelDeMenu;
     ImageIcon carteiraImg = new ImageIcon("./img/carteira.png");
     JMenuBar barraDeMenu = new JMenuBar();
-    SistemaDoGerenciadorFinanceiroParteDoUsuario sistema = new SistemaDoGerenciadorFinanceiroParteDoUsuario();
+    SistemaDoGerenciadorFinanceiro sistema = new SistemaDoGerenciadorFinanceiro();
 
     public ProgramaCarteiraGUI(){
 

@@ -5,37 +5,35 @@ import java.util.Objects;
 
 public abstract class MovimentoBase implements Serializable {
 
-    private double valor;
     private String descricao;
+    private double valor;
+
 
     //Criação.
-    public MovimentoBase(double valor, String descricao){
-        this.valor = valor;
+    public MovimentoBase(String descricao, double valorString){
         this.descricao = descricao;
+        this.valor = valor;
     }
 
-    //get's e set's.
-    public abstract String getMovimentoCompleto();
+    //Get's.
+    public String getDescricao() {
+        return descricao;
+    }
 
     public double getValor() {
         return valor;
+    }
+
+    //Set's.
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public void setValor(double valor) {
         this.valor = valor;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    //equals, hashcode e toString.
-
-
+    //Equals e HashCode.
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -45,11 +43,15 @@ public abstract class MovimentoBase implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(valor, descricao);
+        return Objects.hash(descricao, valor);
     }
 
+    //toString.
     @Override
     public String toString() {
-        return "Movimento no valor de: "+getValor()+"; Descrita como: "+getDescricao();
+        return "MovimentoBase{" +
+                "descricao='" + descricao + '\'' +
+                ", valor=" + valor +
+                '}';
     }
 }

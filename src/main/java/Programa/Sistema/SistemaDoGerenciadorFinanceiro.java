@@ -12,19 +12,16 @@ import java.io.Serializable;
 import java.util.*;
 
 
-public class SistemaDoGerenciadorFinanceiroParteDoUsuario implements Serializable {
+public class SistemaDoGerenciadorFinanceiro implements Serializable {
 
     private Usuario usuarioPrincipal;
     private GravadorDeDados gravador;
 
     //inicia o sistema
-    public SistemaDoGerenciadorFinanceiroParteDoUsuario(){
+    public SistemaDoGerenciadorFinanceiro(){
         this.usuarioPrincipal = new Usuario();
         this.gravador = new GravadorDeDados();;
     }
-
-    //Cria codigo aleatório para o usuário.
-    Random random = new Random();
 
     //Cria usuário.
     public void cadastraUsuario (String nome, double saldoCorrente) throws UsuarioJaCadastradoException {

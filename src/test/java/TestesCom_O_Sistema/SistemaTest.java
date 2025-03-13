@@ -2,7 +2,7 @@ package TestesCom_O_Sistema;
 
 import Programa.Exceptions.UsuarioJaCadastradoException;
 import Programa.Exceptions.UsuarioNaoCadastradoException;
-import Programa.Sistema.SistemaDoGerenciadorFinanceiroParteDoUsuario;
+import Programa.Sistema.SistemaDoGerenciadorFinanceiro;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class SistemaTest {
 
     @Test
     public void testeDeSistema() throws UsuarioJaCadastradoException, UsuarioNaoCadastradoException, IOException {
-        SistemaDoGerenciadorFinanceiroParteDoUsuario sistema = new SistemaDoGerenciadorFinanceiroParteDoUsuario();
+        SistemaDoGerenciadorFinanceiro sistema = new SistemaDoGerenciadorFinanceiro();
         //Usuario de teste. Nome = Emanuel; Saldo corrente inicial: 1000.
         try{
             sistema.recuperarDados();
