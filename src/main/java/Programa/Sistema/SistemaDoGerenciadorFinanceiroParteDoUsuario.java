@@ -12,13 +12,13 @@ import java.io.Serializable;
 import java.util.*;
 
 
-public class SistemaDoGerenciadorFinanceiro implements Serializable {
+public class SistemaDoGerenciadorFinanceiroParteDoUsuario implements Serializable {
 
     private Usuario usuarioPrincipal;
     private GravadorDeDados gravador;
 
     //inicia o sistema
-    public SistemaDoGerenciadorFinanceiro(){
+    public SistemaDoGerenciadorFinanceiroParteDoUsuario(){
         this.usuarioPrincipal = new Usuario();
         this.gravador = new GravadorDeDados();;
     }
@@ -105,6 +105,7 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
     public double getSaldoAtual(){
         return this.usuarioPrincipal.getSaldoCorrente();
     }
+
     public double somaSaldo (){
         double saldo = usuarioPrincipal.getSaldoCorrente()+getValorDeTodasAsEntradas()-getValorDeTodasAsSaidas();
         usuarioPrincipal.setSaldoCorrente(saldo);
