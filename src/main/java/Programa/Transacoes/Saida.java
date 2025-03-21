@@ -83,9 +83,9 @@ public class Saida extends MovimentoBase implements Serializable {
     public String toString() {
         return "Saida{" +
                 "codigoDeMovimentacao=" + codigoDeMovimentacao +
-                ", descricao='" + descricao + '\'' +
+                ", descricao='" + super.getDescricao() + '\'' +
                 ", data=" + data +
-                ", valor=" + valor +
+                ", valor=" + super.getValor() +
                 '}';
     }
 }

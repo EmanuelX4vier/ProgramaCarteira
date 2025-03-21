@@ -10,7 +10,7 @@ public abstract class MovimentoBase implements Serializable {
 
 
     //Criação.
-    public MovimentoBase(String descricao, double valorString){
+    public MovimentoBase(String descricao, double valor){
         this.descricao = descricao;
         this.valor = valor;
     }

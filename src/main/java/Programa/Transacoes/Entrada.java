@@ -83,9 +83,9 @@ public class Entrada extends MovimentoBase implements Serializable {
     public String toString() {
         return "Entrada{" +
                 "codigoDeMovimentacao=" + codigoDeMovimentacao +
-                ", descricao='" + descricao + '\'' +
+                ", descricao='" + super.getDescricao() + '\'' +
                 ", data=" + data +
-                ", valor=" + valor +
+                ", valor=" + super.getValor() +
                 '}';
     }
 }
