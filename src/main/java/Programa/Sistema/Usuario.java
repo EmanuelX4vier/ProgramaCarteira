@@ -1,6 +1,8 @@
 package Programa.Sistema;
 
+import Programa.Exceptions.TransacaoNaoExisteException;
 import Programa.Transacoes.Entrada;
+import Programa.Transacoes.MovimentoBase;
 import Programa.Transacoes.Saida;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,6 +31,29 @@ public class Usuario implements Serializable {
         this.saidas=new HashMap<>();
     }
 
+    //Demais métodos.
+    public boolean verificadorDeMovimentacao(int codigoDeMovimentacao, String descicao){
+        for(Entrada a: this.entradas.values()){
+            if(a.getCodigoDeMovimentacao() == codigoDeMovimentacao && a.getDescricao().equalsIgnoreCase(descicao)){
+                return true;
+            }
+        }
+        for(Saida s: this.saidas.values()){
+            if(s.getCodigoDeMovimentacao() == codigoDeMovimentacao && s.getDescricao().equalsIgnoreCase(descicao)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void adicionarEntrada(Entrada entrada){
+        this.entradas.put(entrada.getCodigoDeMovimentacao(), entrada);
+    }
+
+    public void adicionarSaida(Saida saida){
+        this.saidas.put(saida.getCodigoDeMovimentacao(), saida);
+    }
+
     //Get's.
         //Nome e saldo.
     public String getNome() {
@@ -40,14 +65,45 @@ public class Usuario implements Serializable {
     }
 
         //Entradas e Saídas.
+    public MovimentoBase getTransacao (int codigoDeMovimentacao) throws TransacaoNaoExisteException {
+        for(Entrada e: this.entradas.values()){
+            if(e.getCodigoDeMovimentacao() ==  codigoDeMovimentacao){
+                return e;
+            }
+        }
+
+        for(Saida s: this.saidas.values()){
+            if(s.getCodigoDeMovimentacao() == codigoDeMovimentacao){
+                return s;
+            }
+        }
+        throw new TransacaoNaoExisteException("Não existe transação com este código.");
+    }
+
     public List<Entrada> getEntradas() {
         List<Entrada> listaDeEntradas = new ArrayList<>(this.entradas.values());
         return listaDeEntradas;
     }
 
+    public double getValorDeTodasAsEntradas(){
+        double valorTotal = 0;
+        for(Entrada e: this.entradas.values()){
+            valorTotal += e.getValor();
+        }
+        return valorTotal;
+    }
+
     public List<Saida> getSaidas() {
         List<Saida> listaDeSaidas = new ArrayList<>(this.saidas.values());
         return listaDeSaidas;
+    }
+
+    public double getValorTotalDeTodasAsSaidas(){
+        double valorTotal = 0;
+        for(Saida s: this.saidas.values()){
+            valorTotal += s.getValor();
+        }
+        return valorTotal;
     }
 
     //Set's.
@@ -65,7 +121,7 @@ public class Usuario implements Serializable {
         List<Entrada> novasEntradas = new ArrayList<>(entradas);
         this.entradas = new HashMap<>();
         for(Entrada e: novasEntradas){
-            Entrada novaEntrada = new Entrada(e.getCodigoDeMovimentacao(), e.getDescricao(), e.getData(), e.getValor());
+            Entrada novaEntrada = new Entrada(e.getCodigoDeMovimentacao(), e.getDescricao(), e.getValor());
             this.entradas.put(e.getCodigoDeMovimentacao(), novaEntrada);
         }
     }
@@ -74,7 +130,7 @@ public class Usuario implements Serializable {
         List<Saida> novasSaidas = new ArrayList<>(saidas);
         this.saidas = new HashMap<>();
         for(Saida e: novasSaidas){
-            Saida novaSaida = new Saida(e.getCodigoDeMovimentacao(), e.getDescricao(), e.getData(), e.getValor());
+            Saida novaSaida = new Saida(e.getCodigoDeMovimentacao(), e.getDescricao(), e.getValor());
             this.saidas.put(e.getCodigoDeMovimentacao(), novaSaida);
         }
     }

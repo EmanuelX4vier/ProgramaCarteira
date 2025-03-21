@@ -3,24 +3,30 @@ package Programa.Transacoes;
 import Programa.Sistema.Data;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Random;
 
 public class Saida extends MovimentoBase implements Serializable {
 
+    private Random random;
+
     private final int codigoDeMovimentacao;
     private String descricao;
-    private Data data;
     private double valor;
+    private Data data;
 
     //Cria o movimento.
-    public Saida(int codigoDeMovimentacao, String descricao, Data data, double valor) {
+    public Saida(int codigoDeMovimentacao, String descricao, double valor) {
         super(descricao, valor);
+
+        this.random = new Random();
+
         this.codigoDeMovimentacao = codigoDeMovimentacao;
-        this.data = data;
+        this.data = new Data();
     }
 
     public Saida() {
         super("Sem descrição", 0);
-        this.codigoDeMovimentacao = 0;
+        this.codigoDeMovimentacao = random.nextInt();
         this.data = new Data();
     }
 
@@ -64,12 +70,12 @@ public class Saida extends MovimentoBase implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Saida saida = (Saida) o;
-        return codigoDeMovimentacao == saida.codigoDeMovimentacao;
+        return codigoDeMovimentacao == saida.codigoDeMovimentacao && Objects.equals(descricao, saida.descricao) && Objects.equals(data, saida.data);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), codigoDeMovimentacao);
+        return Objects.hash(super.hashCode(), codigoDeMovimentacao, descricao, data);
     }
 
     //toString.

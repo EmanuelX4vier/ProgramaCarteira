@@ -33,7 +33,7 @@ public class ProgramaCarteiraGUI extends JFrame {
         linha1.setFont(new Font("Times New Roman", Font.BOLD, 24));
         linha1.setForeground(Color.LIGHT_GRAY);
 
-        linha2 = new JLabel(String.valueOf("Saldo atual: "+sistema.getSaldoAtual()), JLabel.CENTER);
+        linha2 = new JLabel(String.valueOf("Saldo atual: "+sistema.getSaldoDoUsuario()), JLabel.CENTER);
         linha2.setFont(new Font("Times New Roman", Font.BOLD, 14));
         linha2.setForeground(Color.LIGHT_GRAY);
         linha3 = new JLabel(carteiraImg, JLabel.CENTER);
