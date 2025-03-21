@@ -16,11 +16,13 @@ public class GravadorDeDados implements Serializable {
         this.dadosFinanceiros = "dadosFinanceiros.dat";
     }
 
-   public void gravaDados (Usuario usuario) throws IOException {
-       try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(this.dadosFinanceiros))) {
-           out.writeObject(usuario);
-       }
-   }
+    public void gravaDados (Usuario usuarios) throws IOException{
+        ArrayList<Usuario> usuariosArrayList = new ArrayList<>();
+        usuariosArrayList.add(usuarios);
+        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(this.dadosFinanceiros))){
+            out.writeObject(usuariosArrayList);
+        }
+    }
 
     public Usuario recuperaDados() throws IOException {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(this.dadosFinanceiros))) {

@@ -57,6 +57,9 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
     public String getNomeDoUsuario(){
         return usuarioPrincipal.getNome();
     }
+    public void setNomeDoUsuario(String novoNome){
+        this.usuarioPrincipal.setNome(novoNome);
+    }
     public double getSaldoDoUsuario(){
         return this.usuarioPrincipal.getSaldoCorrente();
     }
