@@ -63,6 +63,9 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
     public double getSaldoDoUsuario(){
         return this.usuarioPrincipal.getSaldoCorrente();
     }
+    public void setSaldoDoUsuario(double novoSaldo){
+        this.usuarioPrincipal.setSaldoCorrente(novoSaldo);
+    }
 
         //Informativo base do usuario.
     public String getInformativo(){
