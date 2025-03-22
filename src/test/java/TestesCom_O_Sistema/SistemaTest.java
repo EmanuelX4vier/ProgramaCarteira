@@ -19,9 +19,12 @@ public class SistemaTest {
         } catch (IOException e) {
             e.getStackTrace();
         }
+
+       sistema.registrarEntrada("Salário", 1450);
         System.out.println(sistema.getNomeDoUsuario());
         System.out.println(sistema.getInformativo());
-        sistema.salvarDados();
+
+
     }
 
 }
