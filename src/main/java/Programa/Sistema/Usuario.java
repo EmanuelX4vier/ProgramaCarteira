@@ -65,7 +65,7 @@ public class Usuario implements Serializable {
     }
 
         //Entradas e Saídas.
-    public MovimentoBase getTransacao (int codigoDeMovimentacao) throws TransacaoNaoExisteException {
+    /*public MovimentoBase getTransacao (int codigoDeMovimentacao) throws TransacaoNaoExisteException {
         for(Entrada e: this.entradas.values()){
             if(e.getCodigoDeMovimentacao() ==  codigoDeMovimentacao){
                 return e;
@@ -78,7 +78,7 @@ public class Usuario implements Serializable {
             }
         }
         throw new TransacaoNaoExisteException("Não existe transação com este código.");
-    }
+    }*/
 
     public List<Entrada> getEntradas() {
         List<Entrada> listaDeEntradas = new ArrayList<>(this.entradas.values());

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.Random;
 
-public class Entrada extends MovimentoBase implements Serializable {
+public class Entrada implements Serializable {
 
     private Random random;
 
@@ -16,17 +16,17 @@ public class Entrada extends MovimentoBase implements Serializable {
 
     //Cria o movimento.
     public Entrada(int codigoDeMovimentacao, String descricao, double valor) {
-        super(descricao, valor);
-
         this.random = new Random();
-
         this.codigoDeMovimentacao = codigoDeMovimentacao;
+        this.descricao = descricao;
+        this.valor = valor;
         this.data = new Data();
     }
 
     public Entrada() {
-        super("Sem descrição", 0);
         this.codigoDeMovimentacao = random.nextInt();
+        this.descricao = "Sem descrição";
+        this.valor = 0;
         this.data = new Data();
     }
 
@@ -35,7 +35,7 @@ public class Entrada extends MovimentoBase implements Serializable {
         return codigoDeMovimentacao;
     }
 
-    @Override
+
     public String getDescricao() {
         return descricao;
     }
@@ -44,18 +44,18 @@ public class Entrada extends MovimentoBase implements Serializable {
         return data;
     }
 
-    @Override
+
     public double getValor() {
         return valor;
     }
 
     //Set's.
-    @Override
+
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-    @Override
+
     public void setValor(double valor) {
         this.valor = valor;
     }
@@ -83,9 +83,9 @@ public class Entrada extends MovimentoBase implements Serializable {
     public String toString() {
         return "Informações de entrada:\n" +
                 "  Codigo: "+getCodigoDeMovimentacao()+";\n" +
-                "  Descrição: "+super.getDescricao()+";\n" +
+                "  Descrição: "+getDescricao()+";\n" +
                 "  Data e hora: "+getData()+";\n" +
-                "  Valor: "+super.getValor()+".\n" +
+                "  Valor: "+getValor()+".\n" +
                 "\n";
     }
 }
