@@ -92,9 +92,9 @@ public class SistemaDoGerenciadorFinanceiro implements Serializable {
     }
 
     //Operações com o saldo.
-    public void calcularSaldo (){
-        double saldo = (getValorDeTodasAsEntradas()-getValorDeTodasAsSaidas())+getSaldoDoUsuario();
-        this.usuarioPrincipal.setSaldoCorrente(saldo);
+    public double calcularSaldo (){
+        double saldo = getSaldoDoUsuario() + (getValorDeTodasAsEntradas() - getValorDeTodasAsSaidas());
+        return saldo;
     }
 
     //Gravação, recuperação e exlcusão de dados;

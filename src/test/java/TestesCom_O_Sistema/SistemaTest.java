@@ -21,6 +21,8 @@ public class SistemaTest {
             e.getStackTrace();
         }
 
+
+
         System.out.println(sistema.getNomeDoUsuario());
         System.out.println(sistema.getInformativo());
         System.out.println(sistema.getEntradasDoUsuario());
