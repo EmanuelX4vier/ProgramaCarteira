@@ -12,7 +12,7 @@ public class Saida implements Serializable {
     private final int codigoDeMovimentacao;
     private String descricao;
     private double valor;
-    private Data data;
+    private final Data data;
 
     //Cria o movimento.
     public Saida(int codigoDeMovimentacao, String descricao, double valor) {
@@ -60,9 +60,9 @@ public class Saida implements Serializable {
         this.valor = valor;
     }
 
-    public void setData(Data data) {
+    /*public void setData(Data data) {
         this.data = data;
-    }
+    }*/
 
     //Equals e HashCode.
     @Override
