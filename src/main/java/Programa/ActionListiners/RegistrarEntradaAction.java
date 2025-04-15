@@ -20,6 +20,7 @@ public class RegistrarEntradaAction implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String descricao = JOptionPane.showInputDialog(janelaPrincipal, "Digite a descrição:");
         double valor = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor"));
+
         try {
             sistema.registrarEntrada(descricao, valor);
             JOptionPane.showMessageDialog(janelaPrincipal, "Registro feito com sucesso.");
