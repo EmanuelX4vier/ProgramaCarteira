@@ -58,7 +58,7 @@ public class Tela extends javax.swing.JFrame {
         registrarSaida = new javax.swing.JMenuItem();
         menuPesquisar = new javax.swing.JMenu();
         pesquisarTodasAsEntradas = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        pesquisarTodasAsSaidas = new javax.swing.JMenuItem();
         pesquisarEntradaPorCodigo = new javax.swing.JMenuItem();
         pesquisarSaidaPorCodigo = new javax.swing.JMenuItem();
         menuOutro = new javax.swing.JMenu();
@@ -224,24 +224,21 @@ public class Tela extends javax.swing.JFrame {
         pesquisarTodasAsEntradas.addActionListener(new PesquisarTodasAsEntradasAction(sistema, this));
         menuPesquisar.add(pesquisarTodasAsEntradas);
 
-        jMenuItem2.setText("Pesquisar Saidas");
-        menuPesquisar.add(jMenuItem2);
+        pesquisarTodasAsSaidas.setText("Pesquisar Saidas");
+        pesquisarTodasAsSaidas.addActionListener(new PesquisarTodasAsSaidasAction(sistema, this));
+        menuPesquisar.add(pesquisarTodasAsSaidas);
 
         pesquisarEntradaPorCodigo.setText("Pesquisar Entradas Por Código");
-        pesquisarEntradaPorCodigo.addActionListener(new PesquisarEntradaPorCodigo(sistema, this));
+        pesquisarEntradaPorCodigo.addActionListener(new PesquisarEntradaPorCodigoAction(sistema, this));
         menuPesquisar.add(pesquisarEntradaPorCodigo);
 
         pesquisarSaidaPorCodigo.setText("Pesquisar Saidas Por Código ");
+        pesquisarSaidaPorCodigo.addActionListener(new PesquisarSaidaPorCodigoAction(sistema, this));
         menuPesquisar.add(pesquisarSaidaPorCodigo);
 
         barraDeMenu.add(menuPesquisar);
 
         menuOutro.setText("Outros");
-//        menuOutro.addActionListener(new java.awt.event.ActionListener() {
-//            public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                menuOutroActionPerformed(evt);
-//            }
-//        });
 
         apagarDados.setText("Apagar Dados");
         apagarDados.addActionListener(new ApagarDadosAction(sistema, this));
@@ -299,7 +296,7 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JMenuBar barraDeMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem pesquisarTodasAsSaidas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu menuOutro;
     private javax.swing.JMenu menuPesquisar;

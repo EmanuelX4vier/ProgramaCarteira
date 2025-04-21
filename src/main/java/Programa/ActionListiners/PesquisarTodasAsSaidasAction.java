@@ -20,7 +20,7 @@ public class PesquisarTodasAsSaidasAction implements ActionListener {
         if(sistema.getSaidasDoUsuario().isEmpty()){
             JOptionPane.showMessageDialog(janelaPrincipal,"Não existe saidas");
         }else{
-            JOptionPane.showMessageDialog(janelaPrincipal,sistema.getEntradasDoUsuario());
+            JOptionPane.showMessageDialog(janelaPrincipal,sistema.getSaidasDoUsuario());
         }
     }
 }

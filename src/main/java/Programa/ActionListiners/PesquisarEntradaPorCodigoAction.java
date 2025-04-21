@@ -7,11 +7,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PesquisarEntradaPorCodigo implements ActionListener {
+public class PesquisarEntradaPorCodigoAction implements ActionListener {
     private SistemaDoGerenciadorFinanceiro sistema;
     private JFrame janelaPrincipal;
 
-    public PesquisarEntradaPorCodigo (SistemaDoGerenciadorFinanceiro sistema, JFrame janela){
+    public PesquisarEntradaPorCodigoAction(SistemaDoGerenciadorFinanceiro sistema, JFrame janela){
         this.sistema = sistema;
         this.janelaPrincipal = janela;
     }
