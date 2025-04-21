@@ -76,7 +76,7 @@ public class Tela extends javax.swing.JFrame {
 
         nomeDoUsuario.setText(sistema.getNomeDoUsuario()+" ");
 
-        saldoDoUsuario.setText(String.valueOf(sistema.getSaldoDoUsuario())+" R$");
+        saldoDoUsuario.setText(String.valueOf(sistema.calcularSaldo())+" R$");
 
         javax.swing.GroupLayout painelInformativoLayout = new javax.swing.GroupLayout(painelInformativo);
         painelInformativo.setLayout(painelInformativoLayout);
@@ -107,7 +107,7 @@ public class Tela extends javax.swing.JFrame {
 
         saldoDeEntradas.setText(String.valueOf(sistema.getValorDeTodasAsEntradas()));
 
-        valorDasEntradas.setText(String.valueOf(sistema.getValorDeTodasAsEntradas()));
+        valorDasEntradas.setText(String.valueOf(sistema.getEntradasDoUsuario().size()));
 
         javax.swing.GroupLayout painelInformativoDeEntradasLayout = new javax.swing.GroupLayout(painelInformativoDeEntradas);
         painelInformativoDeEntradas.setLayout(painelInformativoDeEntradasLayout);
@@ -142,7 +142,7 @@ public class Tela extends javax.swing.JFrame {
 
         saldoDeSaidas.setText(String.valueOf(sistema.getValorDeTodasAsSaidas()));
 
-        valorDasSaidas.setText(String.valueOf(sistema.getValorDeTodasAsSaidas()));
+        valorDasSaidas.setText(String.valueOf(sistema.getSaidasDoUsuario().size()));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
