@@ -3,13 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Interface_Grafica;
+import Programa.ActionListiners.*;
 import Programa.Sistema.SistemaDoGerenciadorFinanceiro;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import Programa.ActionListiners.RegistrarEntradaAction;
-import Programa.ActionListiners.RegistrarSaidaAction;
-import Programa.ActionListiners.ApagarDadosAction;
+
 /**
  *
  * @author emanu
@@ -209,19 +208,12 @@ public class Tela extends javax.swing.JFrame {
         menuRegistrar.setText("Registrar");
 
         registrarEntrada.setText("Registrar Entrada");
-        registrarEntrada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarEntradaActionPerformed(evt);
-            }
-        });
+        registrarEntrada.addActionListener(new RegistrarEntradaAction(sistema, this));
+
         menuRegistrar.add(registrarEntrada);
 
         registrarSaida.setText("Registrar Saída");
-        registrarSaida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarSaidaActionPerformed(evt);
-            }
-        });
+        registrarSaida.addActionListener(new RegistrarSaidaAction(sistema, this));
         menuRegistrar.add(registrarSaida);
 
         barraDeMenu.add(menuRegistrar);
@@ -229,22 +221,14 @@ public class Tela extends javax.swing.JFrame {
         menuPesquisar.setText("Pesquisa");
 
         pesquisarTodasAsEntradas.setText("Pesquisar Entradas");
-        pesquisarTodasAsEntradas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisarTodasAsEntradasActionPerformed(evt);
-            }
-        });
+        pesquisarTodasAsEntradas.addActionListener(new PesquisarTodasAsEntradasAction(sistema, this));
         menuPesquisar.add(pesquisarTodasAsEntradas);
 
         jMenuItem2.setText("Pesquisar Saidas");
         menuPesquisar.add(jMenuItem2);
 
         pesquisarEntradaPorCodigo.setText("Pesquisar Entradas Por Código");
-        pesquisarEntradaPorCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisarEntradaPorCodigoActionPerformed(evt);
-            }
-        });
+        pesquisarEntradaPorCodigo.addActionListener(new PesquisarEntradaPorCodigo(sistema, this));
         menuPesquisar.add(pesquisarEntradaPorCodigo);
 
         pesquisarSaidaPorCodigo.setText("Pesquisar Saidas Por Código ");
@@ -253,26 +237,18 @@ public class Tela extends javax.swing.JFrame {
         barraDeMenu.add(menuPesquisar);
 
         menuOutro.setText("Outros");
-        menuOutro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuOutroActionPerformed(evt);
-            }
-        });
+//        menuOutro.addActionListener(new java.awt.event.ActionListener() {
+//            public void actionPerformed(java.awt.event.ActionEvent evt) {
+//                menuOutroActionPerformed(evt);
+//            }
+//        });
 
         apagarDados.setText("Apagar Dados");
-        apagarDados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                apagarDadosActionPerformed(evt);
-            }
-        });
+        apagarDados.addActionListener(new ApagarDadosAction(sistema, this));
         menuOutro.add(apagarDados);
 
         salvarDados.setText("Salvar Dados");
-        salvarDados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salvarDadosActionPerformed(evt);
-            }
-        });
+        salvarDados.addActionListener(new SalvarDadosAction(sistema, this));
         menuOutro.add(salvarDados);
 
         barraDeMenu.add(menuOutro);
@@ -281,35 +257,7 @@ public class Tela extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
-
-    private void registrarSaidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarSaidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_registrarSaidaActionPerformed
-
-    private void menuOutroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuOutroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuOutroActionPerformed
-
-    private void apagarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apagarDadosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_apagarDadosActionPerformed
-
-    private void salvarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarDadosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_salvarDadosActionPerformed
-
-    private void registrarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarEntradaActionPerformed
-        
-    }//GEN-LAST:event_registrarEntradaActionPerformed
-
-    private void pesquisarTodasAsEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarTodasAsEntradasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pesquisarTodasAsEntradasActionPerformed
-
-    private void pesquisarEntradaPorCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarEntradaPorCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pesquisarEntradaPorCodigoActionPerformed
+    }
 
     /**
      * @param args the command line arguments
