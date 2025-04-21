@@ -58,6 +58,10 @@ public class Tela extends javax.swing.JFrame {
         registrarEntrada = new javax.swing.JMenuItem();
         registrarSaida = new javax.swing.JMenuItem();
         menuPesquisar = new javax.swing.JMenu();
+        pesquisarTodasAsEntradas = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        pesquisarEntradaPorCodigo = new javax.swing.JMenuItem();
+        pesquisarSaidaPorCodigo = new javax.swing.JMenuItem();
         menuOutro = new javax.swing.JMenu();
         apagarDados = new javax.swing.JMenuItem();
         salvarDados = new javax.swing.JMenuItem();
@@ -223,6 +227,29 @@ public class Tela extends javax.swing.JFrame {
         barraDeMenu.add(menuRegistrar);
 
         menuPesquisar.setText("Pesquisa");
+
+        pesquisarTodasAsEntradas.setText("Pesquisar Entradas");
+        pesquisarTodasAsEntradas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarTodasAsEntradasActionPerformed(evt);
+            }
+        });
+        menuPesquisar.add(pesquisarTodasAsEntradas);
+
+        jMenuItem2.setText("Pesquisar Saidas");
+        menuPesquisar.add(jMenuItem2);
+
+        pesquisarEntradaPorCodigo.setText("Pesquisar Entradas Por Código");
+        pesquisarEntradaPorCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarEntradaPorCodigoActionPerformed(evt);
+            }
+        });
+        menuPesquisar.add(pesquisarEntradaPorCodigo);
+
+        pesquisarSaidaPorCodigo.setText("Pesquisar Saidas Por Código ");
+        menuPesquisar.add(pesquisarSaidaPorCodigo);
+
         barraDeMenu.add(menuPesquisar);
 
         menuOutro.setText("Outros");
@@ -276,6 +303,14 @@ public class Tela extends javax.swing.JFrame {
         
     }//GEN-LAST:event_registrarEntradaActionPerformed
 
+    private void pesquisarTodasAsEntradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarTodasAsEntradasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pesquisarTodasAsEntradasActionPerformed
+
+    private void pesquisarEntradaPorCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarEntradaPorCodigoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pesquisarEntradaPorCodigoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -316,6 +351,7 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JMenuBar barraDeMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu menuOutro;
     private javax.swing.JMenu menuPesquisar;
@@ -324,6 +360,9 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JPanel painelInformativo;
     private javax.swing.JPanel painelInformativoDeEntradas;
     private javax.swing.JPanel painelPrincipal;
+    private javax.swing.JMenuItem pesquisarEntradaPorCodigo;
+    private javax.swing.JMenuItem pesquisarSaidaPorCodigo;
+    private javax.swing.JMenuItem pesquisarTodasAsEntradas;
     private javax.swing.JMenuItem registrarEntrada;
     private javax.swing.JMenuItem registrarSaida;
     private javax.swing.JLabel saldoDeEntradas;

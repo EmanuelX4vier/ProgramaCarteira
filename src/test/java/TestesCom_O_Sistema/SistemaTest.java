@@ -20,7 +20,10 @@ public class SistemaTest {
         } catch (IOException e) {
             e.getStackTrace();
         }
-
+        assertEquals("Emanuel", sistema.getNomeDoUsuario());
+        assertEquals(0, sistema.getSaldoDoUsuario());
+        assertEquals(0, sistema.getEntradasDoUsuario().size());
+        assertEquals(0, sistema.getSaidasDoUsuario().size());
         System.out.println(sistema.getNomeDoUsuario());
         System.out.println(sistema.getInformativo());
         System.out.println(sistema.getEntradasDoUsuario());
