@@ -45,7 +45,7 @@ public class Tela extends JFrame {
 
         // Painel base com cor de fundo
         painelBase = new JPanel(null);
-        painelBase.setBackground(new Color(0xF5F5F5)); // Fundo cinza claro
+        painelBase.setBackground(new Color(0xFFFFFFFF, true)); // Fundo cinza claro
         painelBase.setBounds(0, 0, 800, 600);
         add(painelBase);
 
