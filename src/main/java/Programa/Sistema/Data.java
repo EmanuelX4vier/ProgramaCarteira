@@ -1,22 +1,23 @@
 package Programa.Sistema;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.util.Calendar;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Data implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String data;
 
-    Calendar c = Calendar.getInstance();
-    DateFormat dfb = DateFormat.getInstance();
-
-    public Data (){
-        this.data = dfb.format(c.getTime());
+    public Data() {
+        // Pega a data e hora atual do sistema
+        LocalDateTime agora = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        this.data = agora.format(formatter);
     }
 
-    public String toString(){
+    @Override
+    public String toString() {
         return data;
     }
 }
-

@@ -1,38 +1,39 @@
 package Programa.Sistema;
 
-import Programa.Transacoes.Entrada;
-import Programa.Transacoes.Saida;
-
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GravadorDeDados implements Serializable {
 
-    private String dadosFinanceiros;
+    private static final long serialVersionUID = 1L;
+    private final String arquivoDados;
 
-    public GravadorDeDados(){
-        this.dadosFinanceiros = "dadosFinanceiros.dat";
+    public GravadorDeDados() {
+        this.arquivoDados = "dadosFinanceiros.dat";
     }
 
-    public void gravaDados (Usuario usuario) throws IOException{
-        try(FileOutputStream arq = new FileOutputStream(this.dadosFinanceiros)){
-            ObjectOutputStream obj = new ObjectOutputStream(arq);
-            obj.writeObject(usuario);
-            obj.flush();
+    // Salva o usuário no arquivo
+    public void gravaDados(Usuario usuario) throws IOException {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(arquivoDados))) {
+            oos.writeObject(usuario);
         } catch (IOException e) {
-            e.getStackTrace();
+            throw new IOException("Erro ao gravar dados do usuário.", e);
         }
     }
 
+    // Recupera o usuário do arquivo
     public Usuario recuperaDados() throws IOException {
-        try (FileInputStream arq = new FileInputStream(this.dadosFinanceiros)) {
-            ObjectInputStream obj = new ObjectInputStream(arq);
-            Usuario usuario = (Usuario)obj.readObject();
-            return usuario;
-        } catch (ClassNotFoundException | ClassCastException e) {
-            throw new IOException(e);
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(arquivoDados))) {
+            return (Usuario) ois.readObject();
+        } catch (ClassNotFoundException e) {
+            throw new IOException("Classe do usuário não encontrada ao recuperar dados.", e);
+        } catch (ClassCastException e) {
+            throw new IOException("Erro de conversão ao recuperar dados do usuário.", e);
         }
     }
 
+    // Verifica se o arquivo de dados existe
+    public boolean dadosExistem() {
+        File file = new File(arquivoDados);
+        return file.exists() && file.length() > 0;
+    }
 }

@@ -1,137 +1,101 @@
 package Programa.Sistema;
 
 import Programa.Exceptions.TransacaoNaoExisteException;
-import Programa.Transacoes.Entrada;
 import Programa.Transacoes.MovimentoBase;
+import Programa.Transacoes.Entrada;
 import Programa.Transacoes.Saida;
+import Programa.Transacoes.TipoMovimento;
+
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Usuario implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private String nome;
     private double saldoCorrente;
-    private HashMap<Integer, Entrada> entradas;
-    private HashMap<Integer, Saida> saidas;
+    private HashMap<Integer, MovimentoBase> transacoes; // Mapa único para entradas e saídas
 
-    //Criação o usuário.
+    // Construtores
     public Usuario(String nome, double saldoCorrente){
-        this.nome=nome;
-        this.saldoCorrente=saldoCorrente;
-        this.entradas=new HashMap<>();
-        this.saidas=new HashMap<>();
+        this.nome = nome;
+        this.saldoCorrente = saldoCorrente;
+        this.transacoes = new HashMap<>();
     }
 
-    public Usuario(){
-        this.nome = "Sem nome";
-        this.saldoCorrente = 0;
-        this.entradas=new HashMap<>();
-        this.saidas=new HashMap<>();
+    public Usuario() {
+        this("Sem nome", 0);
     }
 
-    //Demais métodos.
-    public boolean verificadorDeMovimentacao(int codigoDeMovimentacao, String descicao){
-        for(Entrada a: this.entradas.values()){
-            if(a.getCodigoDeMovimentacao() == codigoDeMovimentacao && a.getDescricao().equalsIgnoreCase(descicao)){
-                return true;
-            }
+    // Adiciona qualquer tipo de transação
+    public void adicionarTransacao(MovimentoBase movimento){
+        transacoes.put(movimento.getCodigoDeMovimentacao(), movimento);
+    }
+
+    // Recupera uma transação pelo código
+    public MovimentoBase getTransacao(int codigo) throws TransacaoNaoExisteException {
+        if(transacoes.containsKey(codigo)) return transacoes.get(codigo);
+        throw new TransacaoNaoExisteException("Não existe transação com este código: " + codigo);
+    }
+
+    // Lista apenas entradas
+    public List<Entrada> getEntradas() {
+        List<Entrada> lista = new ArrayList<>();
+        for(MovimentoBase m : transacoes.values()){
+            if(m.getTipo() == TipoMovimento.ENTRADA) lista.add((Entrada) m);
         }
-        for(Saida s: this.saidas.values()){
-            if(s.getCodigoDeMovimentacao() == codigoDeMovimentacao && s.getDescricao().equalsIgnoreCase(descicao)){
-                return true;
-            }
+        return lista;
+    }
+
+    // Lista apenas saídas
+    public List<Saida> getSaidas() {
+        List<Saida> lista = new ArrayList<>();
+        for(MovimentoBase m : transacoes.values()){
+            if(m.getTipo() == TipoMovimento.SAIDA) lista.add((Saida) m);
         }
-        return false;
+        return lista;
     }
 
-    public void adicionarEntrada(Entrada entrada){
-        this.entradas.put(entrada.getCodigoDeMovimentacao(), entrada);
-    }
-
-    public void adicionarSaida(Saida saida){
-        this.saidas.put(saida.getCodigoDeMovimentacao(), saida);
-    }
-
-    //Get's.
-        //Nome e saldo.
-    public String getNome() {
-        return nome;
-    }
-
-    public double getSaldoCorrente() {
+    // Calcula o saldo atual
+    public double calcularSaldo() {
+        double totalEntradas = getEntradas().stream().mapToDouble(Entrada::getValor).sum();
+        double totalSaidas = getSaidas().stream().mapToDouble(Saida::getValor).sum();
+        saldoCorrente = saldoCorrente + totalEntradas - totalSaidas;
         return saldoCorrente;
     }
 
-        //Entradas e Saídas.
-    /*public MovimentoBase getTransacao (int codigoDeMovimentacao) throws TransacaoNaoExisteException {
-        for(Entrada e: this.entradas.values()){
-            if(e.getCodigoDeMovimentacao() ==  codigoDeMovimentacao){
-                return e;
-            }
-        }
-
-        for(Saida s: this.saidas.values()){
-            if(s.getCodigoDeMovimentacao() == codigoDeMovimentacao){
-                return s;
-            }
-        }
-        throw new TransacaoNaoExisteException("Não existe transação com este código.");
-    }*/
-
-    public List<Entrada> getEntradas() {
-        List<Entrada> listaDeEntradas = new ArrayList<>(this.entradas.values());
-        return listaDeEntradas;
+    // Verifica se uma transação específica existe
+    public boolean verificarTransacao(int codigo, String descricao){
+        MovimentoBase m = transacoes.get(codigo);
+        return m != null && m.getDescricao().equalsIgnoreCase(descricao);
     }
 
-    public double getValorDeTodasAsEntradas(){
-        double valorTotal = 0;
-        for(Entrada e: this.entradas.values()){
-            valorTotal += e.getValor();
-        }
-        return valorTotal;
+    // Getters e Setters
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
+    public double getSaldoCorrente() { return saldoCorrente; }
+    public void setSaldoCorrente(double saldoCorrente) { this.saldoCorrente = saldoCorrente; }
+
+    public HashMap<Integer, MovimentoBase> getTransacoes() { return transacoes; }
+    public void setTransacoes(HashMap<Integer, MovimentoBase> transacoes) { this.transacoes = transacoes; }
+
+    // Total de entradas e saídas
+    public double getValorDeTodasAsEntradas() {
+        return getEntradas().stream().mapToDouble(Entrada::getValor).sum();
     }
 
-    public List<Saida> getSaidas() {
-        List<Saida> listaDeSaidas = new ArrayList<>(this.saidas.values());
-        return listaDeSaidas;
+    public double getValorTotalDeTodasAsSaidas() {
+        return getSaidas().stream().mapToDouble(Saida::getValor).sum();
     }
 
-    public double getValorTotalDeTodasAsSaidas(){
-        double valorTotal = 0;
-        for(Saida s: this.saidas.values()){
-            valorTotal += s.getValor();
-        }
-        return valorTotal;
-    }
-
-    //Set's.
-        //Nome e saldo.
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setSaldoCorrente(double saldoCorrente) {
-        this.saldoCorrente = saldoCorrente;
-    }
-
-        //Entradas e saidas
-    public void setEntradas(List<Entrada> entradas) {
-        List<Entrada> novasEntradas = new ArrayList<>(entradas);
-        this.entradas = new HashMap<>();
-        for(Entrada e: novasEntradas){
-            Entrada novaEntrada = new Entrada(e.getCodigoDeMovimentacao(), e.getDescricao(), e.getValor());
-            this.entradas.put(e.getCodigoDeMovimentacao(), novaEntrada);
-        }
-    }
-
-    public void setSaidas(List<Saida> saidas) {
-        List<Saida> novasSaidas = new ArrayList<>(saidas);
-        this.saidas = new HashMap<>();
-        for(Saida e: novasSaidas){
-            Saida novaSaida = new Saida(e.getCodigoDeMovimentacao(), e.getDescricao(), e.getValor());
-            this.saidas.put(e.getCodigoDeMovimentacao(), novaSaida);
-        }
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nome='" + nome + '\'' +
+                ", saldoCorrente=" + saldoCorrente +
+                ", totalTransacoes=" + transacoes.size() +
+                '}';
     }
 }
