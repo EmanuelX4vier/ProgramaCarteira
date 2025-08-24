@@ -1,1 +1,1 @@
-Carteira digital, funções básicas funcionando, interface está horrivél mas ainda desenvolvendo habilidades, ainda falta a correção de erros em tela para o usuário.
+Pequeno projeto que imita uma "Carteira digital", melhoramento do meu projeto de POO2024-2.
